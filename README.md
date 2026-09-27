@@ -4,15 +4,14 @@
 
 ## 安装
 
-需要 Node.js 20 或更新版本、npm，以及电脑上已有的 Chrome 或 Edge。将本技能目录复制到 `$HOME/.codex/skills/kaipai-web-talking-head-edit`。在 Windows PowerShell 中，如果仓库根目录包含 `kaipai-web-talking-head-edit` 文件夹，可以运行：
+需要 Node.js 20 或更新版本、npm，以及电脑上已有的 Chrome 或 Edge。在 Windows PowerShell 中，克隆仓库并把技能目录复制到 Codex 的技能目录：
 
 ```powershell
+git clone https://github.com/tianqiyun3090-bot/kaipai-web-talking-head-edit.git
 $skillDir = Join-Path $HOME '.codex\skills'
 New-Item -ItemType Directory -Path $skillDir -Force | Out-Null
 Copy-Item -LiteralPath '.\kaipai-web-talking-head-edit' -Destination $skillDir -Recurse
 ```
-
-如果仓库根目录本身就是技能目录，则将该目录整体复制到上述目标路径，不要只复制 `SKILL.md`。
 
 需要 `agent-browser` 时，检查 Node.js 版本并安装 CLI：
 

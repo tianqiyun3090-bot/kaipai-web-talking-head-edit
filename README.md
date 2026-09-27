@@ -2,26 +2,23 @@
 
 将本地口播视频上传到[开拍网感剪辑](https://www.kaipai.com/ai-edit)，按用户要求删除长停顿和重复起句、校对字幕、选择网感模板，并在获得相应请求后导出或下载。
 
-## 安装
+## 在 Codex 中安装
 
-需要 Node.js 20 或更新版本、npm，以及电脑上已有的 Chrome 或 Edge。在 Windows PowerShell 中，克隆仓库并把技能目录复制到 Codex 的技能目录：
+在 Codex 中发送：
+
+> 使用 `$skill-installer` 从 GitHub 仓库 `tianqiyun3090-bot/kaipai-web-talking-head-edit` 的根目录（路径 `.`）安装技能，安装名为 `kaipai-web-talking-head-edit`。
+
+仓库根目录就是技能目录，因此需要指定路径 `.` 和安装名。已用 Codex 自带的 skill-installer 验证这一安装方式。安装完成后的下次对话即可调用 `$kaipai-web-talking-head-edit`。
+
+## 首次使用的浏览器准备
+
+技能安装本身不需要 Node.js。如果 Codex 当前的浏览器工具无法上传本地视频，则需要 Node.js 20+、npm 和电脑上已有的 Chrome 或 Edge。Codex 可按 `SKILL.md` 的说明安装 `agent-browser` CLI；Windows 上使用的命令是：
 
 ```powershell
-git clone https://github.com/tianqiyun3090-bot/kaipai-web-talking-head-edit.git
-$skillDir = Join-Path $HOME '.codex\skills'
-New-Item -ItemType Directory -Path $skillDir -Force | Out-Null
-Copy-Item -LiteralPath '.\kaipai-web-talking-head-edit' -Destination $skillDir -Recurse
-```
-
-需要 `agent-browser` 时，检查 Node.js 版本并安装 CLI：
-
-```powershell
-node --version
-npm --version
 npm install --prefix "$env:LOCALAPPDATA\Codex\agent-browser" agent-browser@0.38.1 --registry https://registry.npmjs.org/
 ```
 
-`0.38.1` 是本技能验证过的 CLI 版本。安装会下载 `agent-browser` 包及其本机可执行文件；不运行 `agent-browser install`，因此不会下载 Chrome 或其他浏览器。CLI 通常会发现系统 Chrome；必要时用 `--executable-path` 指定现有 Chrome/Edge。不会修改 shell 配置，也不会安装全局 npm 包。其他系统可直接复制技能目录到 `~/.codex/skills/`，再按 [agent-browser 官方说明](https://github.com/vercel-labs/agent-browser)只安装 CLI。下次 Codex 对话即可调用 `$kaipai-web-talking-head-edit`。
+`0.38.1` 是本技能验证过的 CLI 版本。命令会下载 `agent-browser` 包及其本机可执行文件；不会运行下载 Chrome 的 `agent-browser install`。CLI 通常会发现系统 Chrome，必要时可指定现有浏览器的路径。无需修改 shell 配置或安装全局 npm 包。
 
 ## 使用
 
